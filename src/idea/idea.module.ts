@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { IdeaEntity } from 'src/ideas/idea.entity';
+import { IdeaEntity } from 'src/idea/idea.entity';
 import { IdeaController } from './idea.controller';
 import { IdeaService } from './idea.service';
 
