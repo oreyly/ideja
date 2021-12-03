@@ -14,7 +14,7 @@ export class UserService {
     }
     
     async showAll(): Promise<UserRO[]>{
-        const users = await this.userRepository.find();
+        const users = await this.userRepository.find({relations:["ideas"]});
         return users.map(user => user.toResponseObject(false));
     }
 
@@ -40,5 +40,13 @@ export class UserService {
         user = await this.userRepository.create(data);
         await this.userRepository.save(user);
         return user.toResponseObject();
+    }
+
+    async deleteAll()
+    {
+        return (await this.userRepository.find()).forEach(element => {
+
+            this.userRepository.delete(element.id);
+        });
     }
 }

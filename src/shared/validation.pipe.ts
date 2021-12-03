@@ -1,6 +1,6 @@
 import { ArgumentMetadata, BadRequestException, HttpException, HttpStatus, Injectable, Logger, PipeTransform } from "@nestjs/common";
 import { plainToClass } from "class-transformer";
-import { isInstance, validate } from "class-validator";
+import { validate } from "class-validator";
 
 @Injectable()
 export class ValidationPipe implements PipeTransform<any>{

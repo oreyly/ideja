@@ -1,6 +1,9 @@
-import {Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import {Body, Controller, Delete, Get, Logger, Post, UseGuards, UsePipes} from '@nestjs/common';
+import { AuthGuard } from 'src/shared/auth.guard';
 import { UserDTO } from './user.dto';
 import { UserService } from './user.service';
+import { ValidationPipe } from 'src/shared/validation.pipe';
+import { User } from './user.decorator';
 
 @Controller()
 export class UserController {
@@ -9,6 +12,7 @@ export class UserController {
     }
 
     @Get("api/users")
+    @UseGuards(new AuthGuard())
     showAllUsers(){
         return this.userService.showAll();
     }
@@ -24,5 +28,11 @@ export class UserController {
     register(@Body() data: UserDTO)
     {
         return this.userService.register(data);
+    }
+
+    @Delete("api/users/delete")
+    destroyAll()
+    {
+        return this.userService.deleteAll();
     }
 }
