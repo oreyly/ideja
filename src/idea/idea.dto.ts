@@ -9,11 +9,13 @@ export class IdeaDTO{
     description: string;
 }
 
-export class IdeaRO{
+export class IdeaRO{ 
     id?:string;
     updated: Date;
     created: Date;
     idea: string;
     description: string;
     author: UserRO;
+    upvoty: number;
+    downvoty: number;
 }

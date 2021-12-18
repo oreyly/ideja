@@ -30,7 +30,7 @@ export class UserController {
         return this.userService.register(data);
     }
 
-    @Delete("api/users/delete")
+    @Delete("api/users")
     destroyAll()
     {
         return this.userService.deleteAll();

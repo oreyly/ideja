@@ -5,7 +5,7 @@
     "username": "postgres",
     "password": "heslo",
     "database": "ideas",
-    "synchronize": true,
+    "synchronize": false,
     "logging": true,
     "entities": ["dist/**/*.entity{.ts,.js}"]
 }
