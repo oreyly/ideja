@@ -14,14 +14,14 @@ export class UserService {
     }
     
     async showAll(): Promise<UserRO[]>{
-        const users = await this.userRepository.find({relations:["ideas"]});
+        const users = await this.userRepository.find({ relations: ["ideas", "bookmarky"] });
         return users.map(user => user.toResponseObject(false));
     }
 
     async login(data: UserDTO): Promise<UserRO>{
-        const {username, password} = data;
-        const user = await this.userRepository.findOne({where: {username}});    
-        if(!user || !(await user.comparePassword(password)))
+        const { username, password } = data;
+        const user = await this.userRepository.findOne({ where: { username } });
+        if (!user || !(await user.comparePassword(password)))
         {
             throw new HttpException(
                 "Invalid username/password",
