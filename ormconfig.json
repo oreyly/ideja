@@ -4,7 +4,7 @@
     "port": "5432",
     "username": "postgres",
     "password": "heslo",
-    "database": "ideas",
+    "database": "nova",
     "synchronize": true,
     "logging": true,
     "entities": ["dist/**/*.entity{.ts,.js}"]
