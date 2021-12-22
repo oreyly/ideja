@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
 import * as jwt from "jsonwebtoken";
 
 @Injectable()
@@ -7,7 +7,7 @@ export class AuthGuard implements CanActivate{
         const request = context.switchToHttp().getRequest();
         if(!request.headers.authorization)
         {
-            return true;
+            return false;
         }
 
         request.user = await this.validateToken(request.headers.authorization);
@@ -24,6 +24,7 @@ export class AuthGuard implements CanActivate{
         const token = auth.split(" ")[1];
         try{
             const decoded = jwt.verify(token, process.env.SECRET);
+            Logger.log("Dekódováno -> " + JSON.stringify(decoded));
             return decoded;
         }
         catch(err){

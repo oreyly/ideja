@@ -14,6 +14,7 @@ export class IdeaController {
 
     private logData(options: any)
     {
+        Logger.log("Tady");
         options.user && this.logger.log("USER" + JSON.stringify(options.user));
         options.data && this.logger.log("DATA" + JSON.stringify(options.data));
         options.id && this.logger.log("IDEA" + JSON.stringify(options.id));
