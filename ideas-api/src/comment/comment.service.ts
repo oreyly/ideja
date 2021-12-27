@@ -87,11 +87,13 @@ export class CommentService {
             relations: ["author", "idea"]
         });
 
-        /*if (comment.author.id != userId) {
+        if (comment.author.id != userId) {
             throw new HttpException("Tohle není tvůj koment", HttpStatus.UNAUTHORIZED);
-        }*/
-
-        await this.commentRepository.remove(comment);
+        }
+        Logger.log(comment.id)
+        await this.commentRepository.delete(comment);
+        Logger.log(comment.id)
+        Logger.log(JSON.stringify(comment));
         return this.toResponseObject(comment);
     }
 
