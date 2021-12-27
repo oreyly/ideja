@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, Query } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger, Query } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserDTO, UserRO } from './user.dto';
@@ -20,6 +20,13 @@ export class UserService {
             skip: 25 * (page - 1)
         });
         return users.map(user => user.toResponseObject(false));
+    }
+
+    async read(username: string)
+    {
+        const user = await this.userRepository.findOne({ where: { username }, relations: ["ideas", "bookmarky"] });
+
+        return user.toResponseObject(false);
     }
 
     async login(data: UserDTO): Promise<UserRO>{
